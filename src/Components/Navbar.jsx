@@ -1,104 +1,59 @@
 import React, { useState } from 'react';
-
-
-const accentHex = '#DCCA87'; 
-const primaryColor = 'text-[#DCCA87]';
-const secondaryColor = 'text-white';
-const hoverEffect = 'hover:text-gray-400 transition-colors duration-300';
-const linkStyles = `mx-4 ${secondaryColor} text-lg font-normal ${hoverEffect}`;
-
-const HamburgerIcon = ({ onClick, color, size = 27, className = '' }) => (
-  <svg 
-    onClick={onClick}
-    className={`cursor-pointer ${className}`}
-    fill={color}
-    xmlns="http://www.w3.org/2000/svg" 
-    viewBox="0 0 24 24" 
-    width={size} 
-    height={size}
-  >
-    <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
-  </svg>
-);
-
-
-const CloseMenuIcon = ({ onClick, color, size = 27, className = '' }) => (
-  <svg 
-    onClick={onClick}
-    className={`cursor-pointer ${className}`}
-    fill={color}
-    xmlns="http://www.w3.org/2000/svg" 
-    viewBox="0 0 24 24" 
-    width={size} 
-    height={size}
-  >
-    <path d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7a.996.996 0 1 0-1.41 1.41L10.59 12l-4.89 4.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.997.997 0 0 0 1.41 0c.39-.39.39-1.03 0-1.42L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/>
-  </svg>
-);
-
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { MdOutlineRestaurantMenu } from 'react-icons/md';
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
 
   return (
-    
-    <nav className='w-full flex justify-between items-center bg-black px-6 py-4 border-b border-[#DCCA87]/20 sticky top-0 z-50'>
+    <nav className='w-full flex justify-between items-center bg-black px-4 sm:px-8 py-4 border-b border-[#DCCA87]/20 sticky top-0 z-50'>
       
-      <div className='flex items-center'>
-        <img className='w-[150px] sm:w-[180px] h-auto' src="/images/gericht.png" alt="App Logo" />
+      <div className='flex justify-start items-center'>
+        <img className='w-[140px] sm:w-[180px] h-auto' src="/images/gericht.png" alt="App Logo" />
       </div>
 
-      <ul className='hidden lg:flex flex-row items-center list-none'>
-        <li className={linkStyles}><a href="#home">Home</a></li>
-        <li className={linkStyles}><a href="#about">About</a></li>
-        <li className={linkStyles}><a href="#menu">Menu</a></li>
-        <li className={linkStyles}><a href="#awards">Awards</a></li>
-        <li className={linkStyles}><a href="#contact">Contact</a></li>
+      <ul className='hidden lg:flex flex-1 justify-center items-center list-none'>
+        {['Home', 'About', 'Menu', 'Awards', 'Contact'].map((item) => (
+          <li key={item} className='mx-4 cursor-pointer hover:text-gray-300 font-sans text-base text-white transition-colors duration-300'>
+            <a href={`#${item.toLowerCase()}`}>{item}</a>
+          </li>
+        ))}
       </ul>
 
-      <div className='hidden lg:flex items-center text-white text-lg font-normal'>
-        <a href="#login" className={`mx-4 ${secondaryColor} ${hoverEffect}`}>Log In / Registration</a>
-
-        <div className='w-[1px] h-7 bg-gray-600 mx-4'></div>
-        <a href="#book" className={`mx-4 ${primaryColor} ${hoverEffect} py-2 px-3 rounded-lg border border-transparent hover:border-[#DCCA87]/50`}>Book Table</a>
+      <div className='hidden lg:flex justify-end items-center'>
+        <a href="#login" className='mx-4 font-sans text-base text-white hover:text-[#DCCA87] transition-colors duration-300'>Log In / Registration</a>
+        <div className='w-[1px] h-[30px] bg-gray-500' />
+        <a href="#book" className='mx-4 font-sans text-base text-white hover:text-[#DCCA87] transition-colors duration-300'>Book Table</a>
       </div>
 
-      <div className='flex lg:hidden'>
-        <HamburgerIcon 
-          color={accentHex}
-          size={27}
+      {/* Mobile Menu */}
+      <div className='lg:hidden flex relative'>
+        <GiHamburgerMenu 
+          color="#fff" 
+          fontSize={27} 
+          className="cursor-pointer" 
           onClick={() => setToggleMenu(true)} 
         />
-      
+        
         {toggleMenu && (
-          <div className='fixed inset-0 bg-black flex flex-col justify-center items-center animate-slide-in'>
-            
-            <CloseMenuIcon 
-              color={accentHex}
-              size={27}
-              className='absolute top-5 right-5'
+          <div className='fixed top-0 left-0 w-full h-[100vh] bg-black transition duration-500 flex flex-col justify-center items-center z-[60] slide-bottom'>
+            <MdOutlineRestaurantMenu 
+              fontSize={27} 
+              className="text-[#DCCA87] cursor-pointer absolute top-5 right-5" 
               onClick={() => setToggleMenu(false)} 
             />
-          
-            <ul className='flex flex-col text-center list-none p-4'>
-              
-              <li className={`my-4 text-3xl ${primaryColor} ${hoverEffect}`} onClick={() => setToggleMenu(false)}><a href="#home">Home</a></li>
-              <li className={`my-4 text-3xl ${primaryColor} ${hoverEffect}`} onClick={() => setToggleMenu(false)}><a href="#about">About</a></li>
-              <li className={`my-4 text-3xl ${primaryColor} ${hoverEffect}`} onClick={() => setToggleMenu(false)}><a href="#menu">Menu</a></li>
-              <li className={`my-4 text-3xl ${primaryColor} ${hoverEffect}`} onClick={() => setToggleMenu(false)}><a href="#awards">Awards</a></li>
-              <li className={`my-4 text-3xl ${primaryColor} ${hoverEffect}`} onClick={() => setToggleMenu(false)}><a href="#contact">Contact</a></li>
-              
-              <div className='mt-8 pt-4 border-t border-gray-700 flex flex-col items-center'>
-                <a href="#login" className={`my-2 text-xl ${secondaryColor} ${hoverEffect}`} onClick={() => setToggleMenu(false)}>Log In / Registration</a>
-                <a href="#book" className={`my-2 text-xl ${primaryColor} ${hoverEffect}`} onClick={() => setToggleMenu(false)}>Book Table</a>
-              </div>
+            <ul className='list-none'>
+              {['Home', 'About', 'Menu', 'Awards', 'Contact'].map((item) => (
+                <li key={item} className='m-8 cursor-pointer text-[#DCCA87] text-2xl text-center font-cormorant hover:text-white' onClick={() => setToggleMenu(false)}>
+                  <a href={`#${item.toLowerCase()}`}>{item}</a>
+                </li>
+              ))}
             </ul>
           </div>
         )}
       </div>
     </nav>
   );
-}
-
+};
 
 export default Navbar;

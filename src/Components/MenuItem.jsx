@@ -1,31 +1,20 @@
 import React from 'react';
 
-const accentColor = 'text-[#DCCA87]'; 
-const textColor = 'text-white';
-
-const MenuItem = ({ title, price, tags }) => {
-  return (
-    <div className="flex flex-col w-full">
-      <div className="flex justify-between items-center">
-     
-        <p className={`font-cormorant text-xl font-semibold ${accentColor} tracking-wider`}>
-          {title}
-        </p>
-        
-        <div className="w-16 h-[1px] bg-white opacity-50 mx-4 flex-shrink-0" />
-        
-        <p className={`font-cormorant text-xl font-semibold ${textColor}`}>
-          {price}
-        </p>
+const MenuItem = ({ title, price, tags }) => (
+  <div className="flex flex-col w-full my-2">
+    <div className="flex flex-row justify-between items-center">
+      <div className="flex-1">
+        <p className="font-cormorant text-[#DCCA87] text-xl md:text-2xl font-bold text-left">{title}</p>
       </div>
-      
-      <div className='w-full mt-1'>
-        <p className="text-gray-500 font-opensans text-sm italic">
-          {tags}
-        </p>
+      <div className="w-[90px] h-[1px] bg-[#DCCA87] mx-4" />
+      <div className="flex justify-end items-end">
+        <p className="font-cormorant text-white text-xl md:text-2xl font-bold">{price}</p>
       </div>
     </div>
-  );
-}
+    <div className="w-full mt-1">
+      <p className="font-opensans text-[#AAAAAA] text-sm md:text-base">{tags}</p>
+    </div>
+  </div>
+);
 
 export default MenuItem;

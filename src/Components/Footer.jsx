@@ -1,6 +1,7 @@
 import React from 'react';
 import { FiFacebook, FiTwitter, FiInstagram } from 'react-icons/fi';
-import FooterOverlay from './FooterOverlay';
+// FIX: Changed path from './Components/FooterOverlay' to './FooterOverlay'
+import FooterOverlay from './FooterOverlay'; 
 
 const Footer = () => {
   return (
@@ -12,6 +13,10 @@ const Footer = () => {
       {/* Newsletter Section */}
       <div className="w-full max-w-[1000px] border border-[#DCCA87] p-4 text-center mb-16 bg-black z-10">
          <h2 className="text-[#DCCA87] font-cormorant text-2xl">Subscribe to our Newsletter</h2>
+         <div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-4">
+            <input type="email" placeholder="Email Address" className="bg-transparent border border-[#F5EFDB] text-white p-2 w-full md:w-[62%] font-opensans" />
+            <button type="button" className="bg-[#DCCA87] text-black font-cormorant px-4 py-2 font-bold">Subscribe</button>
+         </div>
       </div>
 
       {/* Footer Links */}
@@ -49,13 +54,12 @@ const Footer = () => {
             src="/images/spoon.png" 
             alt="spoon" 
             className="w-[45px] mt-2 mb-2" 
-            style={{ marginTop: 15 }} 
           />
           
           <div className="flex flex-row gap-4 mt-4">
-            <FiFacebook className="text-white text-2xl hover:text-[#e58c0f] transition-colors cursor-pointer" />
-            <FiTwitter className="text-white text-2xl hover:text-[#e58c0f] transition-colors cursor-pointer" />
-            <FiInstagram className="text-white text-2xl hover:text-[#e58c0f] transition-colors cursor-pointer" />
+            <FiFacebook className="text-white text-2xl hover:text-[#DCCA87] transition-colors cursor-pointer" />
+            <FiTwitter className="text-white text-2xl hover:text-[#DCCA87] transition-colors cursor-pointer" />
+            <FiInstagram className="text-white text-2xl hover:text-[#DCCA87] transition-colors cursor-pointer" />
           </div>
         </div>
 
